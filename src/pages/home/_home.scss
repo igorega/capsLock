@@ -1,0 +1,176 @@
+.home {
+	position: relative;
+	padding-top: calc(var(--nav-height) + 4rem);
+	display: flex;
+	align-items: center;
+
+	@include media(M) {
+		padding-top: 7rem;
+	}
+
+	@include media(XL) {
+		padding-top: 0;
+	}
+
+	@include media(XXL) {
+		min-height: 100vh;
+	}
+
+	&__block {
+		display: grid;
+
+		@include media(M) {
+			grid-template-columns: repeat(2, 1fr);
+			align-items: center;
+		}
+
+		&-item {
+			&:last-child {
+				position: relative;
+				right: -30%;
+				margin-top: -15rem;
+
+				@include media(M) {
+					right: 0;
+					margin-top: 0;
+				}
+
+				@include media(XL) {
+					position: relative;
+					min-height: 76.4rem;
+				}
+			}
+		}
+	}
+
+	&__text {
+		margin-bottom: 2.4rem;
+		color: var(--orange);
+		font-size: 1.3rem;
+		font-weight: 700;
+		text-transform: uppercase;
+
+		@include media(XS) {
+			font-size: 1.4rem;
+		}
+
+		@include media(M) {
+			font-size: 1.6rem;
+		}
+
+		@include media(XL) {
+			font-size: 2rem;
+		}
+	}
+
+	&__title {
+		max-width: 33rem;
+		margin-bottom: 3rem;
+		color: var(--dark-text);
+		font-family: var(--font-secondary);
+		font-size: 4.4rem;
+		font-weight: 700;
+		letter-spacing: -0.336rem;
+
+		@include media(XS) {
+			font-size: 5rem;
+		}
+
+		@include media(M) {
+			max-width: 38rem;
+			font-size: 5.4rem;
+		}
+
+		@include media(XL) {
+			max-width: initial;
+			font-size: 8.4rem;
+		}
+	}
+
+	$underlineWidth: 160%;
+
+	&__underline {
+		position: relative;
+
+		&-anim {
+			z-index: -1;
+			position: absolute;
+			bottom: 18%;
+			left: -13%;
+			display: inline-flex;
+
+			&::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				width: $underlineWidth;
+				background-color: #fff;
+				transform: rotateY(0);
+				transform-origin: right;
+				transition: transform .3s linear .5s;
+
+				.is-loaded & {
+					transform: rotateY(90deg);
+				}
+			}
+		}
+
+		&-img {
+			max-width: $underlineWidth;
+		}
+	}
+
+	&__desc {
+		max-width: 47rem;
+		margin-bottom: 3.4rem;
+		line-height: 1.9;
+	}
+
+	&__img {
+		max-width: 100%;
+		height: auto;
+
+		@include media(XL) {
+			position: absolute;
+			top: 0;
+			left: -22%;
+			max-width: initial;
+			height: initial;
+		}
+
+		&-icon {
+			display: none;
+
+			@include media(XL) {
+				position: absolute;
+				display: block;
+				transition: transform .2s;
+			}
+
+			&:nth-of-type(1) {
+				top: 10%;
+				left: 5%;
+			}
+
+			&:nth-of-type(2) {
+				top: 16%;
+				right: -10%;
+			}
+		}
+	}
+
+	&__btns {
+		z-index: 1;
+		position: relative;
+		display: grid;
+		justify-content: flex-start;
+		gap: 2.4rem;
+
+		@include media(M) {
+			grid-template-columns: repeat(2, auto);
+			align-items: center;
+			gap: 4.4rem;
+			white-space: nowrap;
+		}
+	}
+}

@@ -1,0 +1,33 @@
+:root {
+	// fonts
+	--font-main: 'Poppins', sans-serif;
+	--font-secondary: 'Volkhov', serif;
+
+	// colors
+	--text-color: #5E6282;
+	--dark-text: #181E4B;
+	--orange: #DF6951;
+	--white: #fff;
+	--yellow: #F1A501;
+	--violet: #6246E5;
+	--light-violet: #DFD7F9;
+	--gradient-1: linear-gradient(180deg, #FF946D 0%, #FF7D68 100%);
+	--shadow-1: #D5AEE4;
+
+	// common
+	--nav-height: 6rem;
+	@include media(M) {
+		--nav-height: 7.4rem;
+	}
+
+	--container: 114rem;
+
+	--padding: 2rem;
+	@include media(M) {
+		--padding: 3rem;
+	}
+
+	@include media(L) {
+		--padding: 4rem;
+	}
+}

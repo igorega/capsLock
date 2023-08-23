@@ -1,0 +1,65 @@
+mixin arrow
+	svg(xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7' fill='none')
+		path(d='M0.742798 1L5.16137 5.5L9.57995 1' stroke='#39425D')
+
+header.header
+	.container
+		nav.nav
+			// item
+			.nav__item
+				.nav__logo
+					a.nav__logo-link(href='/')
+						img.nav__logo-img(
+							width='113'
+							height='34'
+							src='img/components/layout/header/img/logo.svg'
+							alt='CapsLock logo'
+						)
+
+			// toggle button
+			button#navToggleBtn.nav__toggle(
+				aria-controls='navListContent'
+				aria-expanded='false'
+				aria-label='Toggle navigation'
+			)
+				i.nav__toggle-btn
+					span.nav__toggle-inner
+						span.nav__toggle-burger
+
+			// item
+			#navListContent.nav__menu
+				ul.ul.nav__list
+
+					li.nav__list-item(class={'is-active': currentPage === 'destinations'})
+						a.nav__list-link(href='destinations.html')
+							span.nav__list-text Destinations
+
+					li.nav__list-item(class={'is-active': currentPage === 'hotels'})
+						a.nav__list-link(href='hotels.html')
+							span.nav__list-text Hotels
+
+					li.nav__list-item(class={'is-active': currentPage === 'flights'})
+						a.nav__list-link(href='flights.html')
+							span.nav__list-text Flights
+
+					li.nav__list-item(class={'is-active': currentPage === 'bookings'})
+						a.nav__list-link(href='bookings.html')
+							span.nav__list-text Bookings
+
+					li.nav__list-item(class={'is-active': currentPage === 'login'})
+						a.nav__list-link(href='login.html')
+							span.nav__list-text Login
+
+					li.nav__list-item(class={'is-active': currentPage === 'sign-up'})
+						a.nav__list-link.nav__sign-btn(href='sign-up.html') Sign up
+
+					li.nav__list-item
+						.lang-dropdown
+							button.nav__list-link.nav__lang-btn.lang-dropdown__btn
+								span.lang-dropdown__selected EN
+								i.lang-dropdown__arrow: +arrow
+
+							ul.ul.lang-dropdown__list
+								li: button.lang-dropdown__list-btn UA
+								li: button.lang-dropdown__list-btn FR
+								li: button.lang-dropdown__list-btn UK

@@ -1,0 +1,310 @@
+$burgerColor: #181E4B;
+$burgerSize: 2rem;
+
+@mixin burger {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 12%;
+	background: $burgerColor;
+	transition: all .5s cubic-bezier(.1, .9, 0, 1.2);
+}
+
+body {
+	&.menu-open {
+		overflow: hidden;
+		padding-right: var(--scrollPadding);
+
+		.header {
+			&::after {
+				transform: translateX(0);
+			}
+		}
+	}
+}
+
+.header {
+	z-index: 10;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	min-height: var(--nav-height);
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	transition: background-color .3s;
+
+	@include media(M) {
+		position: relative;
+		transition: none;
+	}
+
+	@include media(L) {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+		overflow: initial;
+	}
+
+	&::after {
+		content: '';
+		position: fixed;
+		top: 0;
+		right: 0;
+		transform: translateX(100%);
+		width: 100%;
+		height: 100%;
+		background-color: var(--white);
+		transition: transform .5s;
+
+		@include media(M) {
+			width: 50%;
+		}
+
+		@include media(L) {
+			display: none;
+		}
+	}
+
+	&.is-bg {
+		background-color: var(--white);
+	}
+
+	> .container {
+		padding-right: 0;
+
+		@include media(L) {
+			padding-right: var(--padding);
+		}
+	}
+}
+
+.nav {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: .2rem;
+
+	@include media(L) {
+		min-height: 4rem;
+		gap: 1.2rem;
+	}
+
+	&__item {
+		z-index: 1;
+	}
+
+	&__logo {
+		&-link {
+			display: inline-block;
+		}
+
+		&-img {
+			max-width: 9rem;
+
+			@include media(M) {
+				max-width: 11.3rem;
+			}
+		}
+	}
+
+	&__toggle {
+		z-index: 11;
+		width: var(--nav-height);
+		height: var(--nav-height);
+		display: grid;
+		place-content: center;
+		order: 1;
+		cursor: pointer;
+		overflow: hidden;
+
+		@include media(L) {
+			display: none;
+		}
+
+		&-btn {
+			position: relative;
+			width: $burgerSize;
+			height: $burgerSize;
+			display: block;
+		}
+
+		&-inner {
+			&::before {
+				@include burger;
+				top: 10%;
+				right:0;
+			}
+
+			&::after {
+				@include burger;
+				bottom: 10%;
+				left:0;
+			}
+		}
+
+		&-burger {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			height: $burgerSize;
+			width: $burgerSize;
+
+			&::before,
+			&::after {
+				@include burger;
+			}
+		}
+
+		&.transition {
+			~ .nav__menu {
+				transition: transform .5s;
+			}
+		}
+
+		&[aria-expanded='true'] {
+			~ .nav__menu {
+				transform: translateX(0);
+			}
+
+			.nav__toggle-inner {
+				&::before,
+				&::after {
+					width: 0;
+				}
+			}
+
+			.nav__toggle-burger {
+				&::before {
+					transform: rotate(135deg);
+				}
+
+				&::after {
+					transform: rotate(45deg);
+				}
+			}
+		}
+	}
+
+	&__menu {
+		z-index: 10;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: calc(100% - var(--nav-height));
+		// height: 100%;
+		// padding-top: var(--nav-height);
+		background-color: var(--white);
+		transform: translateX(100%);
+		overflow-x: hidden;
+		overflow-y: auto;
+
+		@include media(M) {
+			width: 50%;
+			padding-top: 0;
+			overflow-y: initial;
+		}
+
+		@include media(L) {
+			position: relative;
+			width: initial;
+			height: initial;
+			background-color: transparent;
+			transform: none;
+			overflow-x: initial;
+			transition: none;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+		padding: 4rem 2.5rem 4rem;
+		user-select: none;
+		transition: transform .5s;
+
+		@include media(M) {
+			padding: 8rem 4.5rem 5.5rem;
+		}
+
+		@include media(L) {
+			gap: 2.5rem;
+			align-items: center;
+			flex-direction: row;
+			transition: none;
+			padding: 0;
+		}
+
+		@include media(XL) {
+			gap: 4rem;
+		}
+
+		&-item {
+			&:not(:last-of-type) {
+				border-bottom: .1rem solid rgba(#181E4B, .1);
+			}
+
+			@include media(L) {
+				&:hover {
+					.nav__list-text {
+						background-position: left;
+						background-size: 100%;
+					}
+				}
+
+				&:not(:last-of-type) {
+					border: none;
+				}
+			}
+		}
+
+		&-link {
+			width: 100%;
+			display: inline-block;
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+			color: #39425D;
+			font-size: 2.4rem;
+
+			@include media(L) {
+				width: initial;
+				padding: 1rem;
+				font-size: 1.6rem;
+			}
+		}
+
+		&-text {
+			@include media(L) {
+				@include hoverUnderlineProp;
+			}
+		}
+	}
+
+	&__sign {
+		&-btn {
+			@include media(L) {
+				border-radius: .5rem;
+				border: .1rem solid #39425D;
+				transition: color .3s,
+										background-color .3s;
+
+				&:hover {
+					color: var(--white);
+					background-color: #39425D;
+				}
+			}
+		}
+	}
+
+	&__lang {
+		&-btn  {
+			display: flex;
+			align-items: center;
+		}
+	}
+}

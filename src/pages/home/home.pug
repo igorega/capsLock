@@ -1,0 +1,46 @@
+.home
+	.container
+		.home__block
+			// item
+			.home__block-item
+				p.home__text Best Destinations around the world
+
+				h1.home__title
+					| Travel, 
+					span.home__underline enjoy
+						span.home__underline-anim
+							img.home__underline-img(
+								src='img/pages/home/img/underline.svg'
+								alt=''
+							)
+					|  and live a new and full life
+
+				p.home__desc Built Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.
+
+				.home__btns
+					a.btn(href='#') Find out more
+
+					button.play-btn
+						i.play-btn__icon
+						span.play-btn__text Play Demo
+
+			// item
+			.home__block-item.js-parallax
+				span.home__img-icon.parallax(data-offset='-20')
+					picture
+						source(srcset='img/pages/home/img/plane.svg', media=XL)
+						img(src='data:,', alt='')
+
+				span.home__img-icon.parallax(data-offset='20')
+					picture
+						source(srcset='img/pages/home/img/plane.svg', media=XL)
+						img(src='data:,', alt='')
+
+				picture
+					source(srcset='img/pages/home/img/traveller.png', media=XL)
+					img.home__img(
+						width='747'
+						height='764'
+						src='img/pages/home/img/traveller-m.png'
+						alt=''
+					)

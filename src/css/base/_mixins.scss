@@ -1,0 +1,16 @@
+@mixin container {
+	width: 100%;
+	max-width: calc(var(--container) + var(--padding) * 2);
+	margin: 0 auto;
+	padding-left: var(--padding);
+	padding-right: var(--padding);
+}
+
+@mixin hoverUnderlineProp($width: .1rem, $bp: right) {
+	display: inline;
+	background-image: linear-gradient(transparent calc(100% - #{$width}), currentColor $width);
+	background-size: 0;
+	background-repeat: no-repeat;
+	background-position: $bp;
+	transition: background-size .3s;
+}

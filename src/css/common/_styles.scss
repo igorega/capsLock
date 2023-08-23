@@ -1,0 +1,19 @@
+.main {
+	overflow-x: hidden;
+}
+
+.container {
+	@include container;
+}
+
+.img-responsive {
+	width: 100%;
+	height: auto;
+}
+
+.ul,
+.ol {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
